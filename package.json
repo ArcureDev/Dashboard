@@ -1,0 +1,11 @@
+{
+  "name": "dashboard",
+  "version": "1.0.0",
+  "description": "Dashboard du projet Cavabiensepasser",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "",
+  "license": "ISC",
+  "workspaces": ["./backend-adonis", "./vercel-c-le-diable"]
+}
