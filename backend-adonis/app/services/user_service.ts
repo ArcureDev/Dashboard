@@ -1,8 +1,7 @@
 import { inject } from '@adonisjs/core'
-import { CredentialsDto } from '../../types/types.js'
 import User from '#models/user'
-import { usersToDtos } from '../mappers/user.mapper.js'
-import { UserDto } from '../dtos/user.dto.js'
+import { usersToDtos } from '../mappers/mappers.js'
+import { CredentialsDto, UserDto } from '../dtos/dtos.js'
 
 @inject()
 export default class UserService {

@@ -1,6 +1,6 @@
 export type Credentials = {
-  email: string | undefined;
-  password: string | undefined;
+  email: string;
+  password: string;
 };
 
 export type BasicUser = {
@@ -16,8 +16,8 @@ export type FullUser = BasicUser & {
 };
 
 export type DashboardParams = {
-  startDate: Date | string
-  endDate: Date | string
+  startDate: Date | string;
+  endDate: Date | string;
 };
 
 export type Page<T> = {
@@ -27,10 +27,20 @@ export type Page<T> = {
   last: boolean;
   number: number;
   numberOfElements: number;
-  pageable: {pageNumber: number; pageSize: number};
+  pageable: { pageNumber: number; pageSize: number };
   size: number;
   sort: string;
   totalElements: number;
   totalPages: number;
   content: T[];
+};
+
+export type EgapC3 = {
+  id?: number;
+  name: string;
+  charts: Chart[];
+};
+
+export type Chart = {
+  id?: number;
 };

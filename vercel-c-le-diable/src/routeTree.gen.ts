@@ -16,12 +16,19 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const PagesLazyImport = createFileRoute('/pages')()
 const LogisterLazyImport = createFileRoute('/logister')()
 const ChartLazyImport = createFileRoute('/chart')()
 const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const PagesLazyRoute = PagesLazyImport.update({
+  id: '/pages',
+  path: '/pages',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/pages.lazy').then((d) => d.Route))
 
 const LogisterLazyRoute = LogisterLazyImport.update({
   id: '/logister',
@@ -79,6 +86,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LogisterLazyImport
       parentRoute: typeof rootRoute
     }
+    '/pages': {
+      id: '/pages'
+      path: '/pages'
+      fullPath: '/pages'
+      preLoaderRoute: typeof PagesLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -89,6 +103,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutLazyRoute
   '/chart': typeof ChartLazyRoute
   '/logister': typeof LogisterLazyRoute
+  '/pages': typeof PagesLazyRoute
 }
 
 export interface FileRoutesByTo {
@@ -96,6 +111,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute
   '/chart': typeof ChartLazyRoute
   '/logister': typeof LogisterLazyRoute
+  '/pages': typeof PagesLazyRoute
 }
 
 export interface FileRoutesById {
@@ -104,14 +120,15 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/chart': typeof ChartLazyRoute
   '/logister': typeof LogisterLazyRoute
+  '/pages': typeof PagesLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/chart' | '/logister'
+  fullPaths: '/' | '/about' | '/chart' | '/logister' | '/pages'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/chart' | '/logister'
-  id: '__root__' | '/' | '/about' | '/chart' | '/logister'
+  to: '/' | '/about' | '/chart' | '/logister' | '/pages'
+  id: '__root__' | '/' | '/about' | '/chart' | '/logister' | '/pages'
   fileRoutesById: FileRoutesById
 }
 
@@ -120,6 +137,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   ChartLazyRoute: typeof ChartLazyRoute
   LogisterLazyRoute: typeof LogisterLazyRoute
+  PagesLazyRoute: typeof PagesLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -127,6 +145,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   ChartLazyRoute: ChartLazyRoute,
   LogisterLazyRoute: LogisterLazyRoute,
+  PagesLazyRoute: PagesLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -142,7 +161,8 @@ export const routeTree = rootRoute
         "/",
         "/about",
         "/chart",
-        "/logister"
+        "/logister",
+        "/pages"
       ]
     },
     "/": {
@@ -156,6 +176,9 @@ export const routeTree = rootRoute
     },
     "/logister": {
       "filePath": "logister.lazy.tsx"
+    },
+    "/pages": {
+      "filePath": "pages.lazy.tsx"
     }
   }
 }

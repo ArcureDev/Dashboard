@@ -25,6 +25,14 @@ type UsersMeChartsGetHead = {
   request: unknown
   response: MakeTuyauResponse<import('../app/controllers/users_controller.ts').default['getCharts'], false>
 }
+type PagesPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/validators/page.ts')['createPageValidator']>>
+  response: MakeTuyauResponse<import('../app/controllers/pages_controller.ts').default['create'], true>
+}
+type LoginPost = {
+  request: MakeTuyauRequest<InferInput<typeof import('../app/validators/login.ts')['loginValidator']>>
+  response: MakeTuyauResponse<import('../app/controllers/login_controller.ts').default['login'], true>
+}
 export interface ApiDefinition {
   'users': {
     '$url': {
@@ -50,6 +58,16 @@ export interface ApiDefinition {
         '$head': UsersMeChartsGetHead;
       };
     };
+  };
+  'pages': {
+    '$url': {
+    };
+    '$post': PagesPost;
+  };
+  'login': {
+    '$url': {
+    };
+    '$post': LoginPost;
   };
 }
 const routes = [
