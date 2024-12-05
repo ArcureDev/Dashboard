@@ -6,6 +6,8 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# pnpm specific lock file
+pnpm-lock.yaml
 
 #################################### BACKEND
 # Dependencies and AdonisJS build
