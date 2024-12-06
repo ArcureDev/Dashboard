@@ -14,7 +14,7 @@ export default class Chart extends BaseModel {
   declare updatedAt: DateTime
 
   @column()
-  declare nameChart: string
+  declare removed: boolean
 
   @column()
   declare pageId: number

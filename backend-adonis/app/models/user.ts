@@ -27,6 +27,9 @@ export default class User extends compose(BaseModel, AuthFinder) {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   declare updatedAt: DateTime | null
 
+  @column()
+  declare removed: boolean
+
   @hasMany(() => Page)
   declare pages: HasMany<typeof Page>
 }

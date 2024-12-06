@@ -12,6 +12,7 @@ export default class extends BaseSchema {
 
       table.string('email').unique()
       table.string('password')
+      table.boolean('removed')
     })
   }
 

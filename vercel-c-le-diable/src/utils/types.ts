@@ -6,6 +6,7 @@ export type Credentials = {
 export type BasicUser = {
   id: number;
   email?: string;
+  pages: EgapC3[];
 };
 
 export type FullUser = BasicUser & {
@@ -15,9 +16,42 @@ export type FullUser = BasicUser & {
   verified: boolean;
 };
 
+export type SearchType =
+  | "BY_GATHERING_TYPE"
+  | "BY_GATHERING_TAGS"
+  | "BY_GATHERING_GROUPINGS"
+  | "BY_GATHERING_PARTICIPATION"
+  | "BY_GATHERING_FOLLOW";
+
+export type ChartType = "LINE" | "BAR" | "BUBBLE" | "PIE";
+
 export type DashboardParams = {
   startDate: Date | string;
   endDate: Date | string;
+  startAddress: Address | undefined;
+  arrivalAddress: Address | undefined;
+  type: SearchType | undefined;
+  chartType: ChartType | undefined;
+};
+
+export type Address = {
+  id: number | undefined;
+  address: string;
+  zipcode: number | undefined;
+  city: string;
+  supplement: string | undefined;
+  lat?: number;
+  lon?: number;
+};
+
+export const emptyAddress = (): Address => {
+  return {
+    id: undefined,
+    address: "",
+    zipcode: undefined,
+    city: "",
+    supplement: undefined,
+  };
 };
 
 export type Page<T> = {

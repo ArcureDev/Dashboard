@@ -2,6 +2,7 @@ import "./navbar.css";
 import { RiPagesLine } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa";
 import { Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button.tsx";
 
 export default function Navbar() {
   return (
@@ -19,6 +20,7 @@ export default function Navbar() {
             </button>
           </div>
         </section>
+        <Button>Se déconnecter</Button>
       </div>
     </section>
   );

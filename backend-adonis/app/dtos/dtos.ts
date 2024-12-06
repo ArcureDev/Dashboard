@@ -6,6 +6,7 @@ export type CredentialsDto = {
 export type UserDto = {
   id: number
   email: string
+  pages: PageDto[]
 }
 
 export type PageDto = {

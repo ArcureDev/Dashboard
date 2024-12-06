@@ -15,9 +15,8 @@ export default function Login() {
     mutationFn: async (credentials) => {
       return tuyau.login.$post(credentials).unwrap();
     },
-    onSuccess: () => {
-      navigate({ to: "/pages" });
-      console.log("success");
+    onSuccess: (user) => {
+      navigate({ to: `/pages/${user.pages[0].id}` });
     },
     onError: () => {
       console.log("error");

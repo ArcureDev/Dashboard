@@ -18,6 +18,9 @@ export default class Page extends BaseModel {
   declare name: string
 
   @column()
+  declare removed: boolean
+
+  @column()
   declare userId: number
 
   @belongsTo(() => User)
